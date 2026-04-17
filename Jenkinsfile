@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     IMAGE_NAME = "sriganesh15/nextjs-app"
-    IMAGE_TAG = ${BUILD_NUMBER}
+    IMAGE_TAG = "${BUILD_NUMBER}"
     
   }
 
