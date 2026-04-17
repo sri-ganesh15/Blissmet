@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: nextjs
-          image: sriganesh15/nextjs-app:5
+          image: sriganesh15/nextjs-app:${BUILD_NUMBER}
           env:
             - name: MONGODB_URI
               valueFrom:
