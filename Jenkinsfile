@@ -23,13 +23,20 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-        withCredentials([string(
+        withCredentials([
+          string(
           credentialsId: 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY',
           variable: 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY'
-        )]) {
+        ),
+          string(
+          credentialsId: 'MONGODB_URI',
+          variable: 'MONGODB_URI'
+        )
+        ]) {
           sh """
             docker build \
               --build-arg NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY \
+              --build-arg MONGODB_URI=$MONGODB_URI \
               -t $IMAGE_NAME:$IMAGE_TAG .
           """
         }
