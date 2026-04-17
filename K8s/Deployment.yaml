@@ -18,3 +18,16 @@ spec:
           image: sriganesh15/nextjs-app:${BUILD_NUMBER}
           ports:
           - containerPort: 3000
+          env:
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: MONGODB_URI
+          
+            - name: CLERK_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: CLERK_SECRET_KEY
+
