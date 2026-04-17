@@ -11,7 +11,7 @@ pipeline {
 
     stage('Checkout') {
       steps {
-        git 'https://github.com/sri-ganesh15/Blissmet.git'
+        git branch: 'main', url: 'https://github.com/sri-ganesh15/Blissmet.git'
       }
     }
 
