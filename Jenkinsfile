@@ -43,7 +43,7 @@ pipeline {
       steps {
          sh """
           kubectl apply -f K8s/Secrets.yaml
-          envsubst < K8s/deployment.yaml  | kubectl apply -f -
+          envsubst < K8s/Deployment.yaml  | kubectl apply -f -
           kubectl apply -f K8s/Service.yaml
         """
       }
