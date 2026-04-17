@@ -42,7 +42,6 @@ pipeline {
     stage('Deploy to Kubernetes') {
       steps {
          sh """
-          kubectl apply -f K8s/Secrets.yaml
           envsubst < K8s/Deployment.yaml  | kubectl apply -f -
           kubectl apply -f K8s/Service.yaml
         """
