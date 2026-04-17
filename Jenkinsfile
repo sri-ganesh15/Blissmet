@@ -15,9 +15,24 @@ pipeline {
       }
     }
 
+    // stage('Build Docker Image') {
+    //   steps {
+    //     sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
+    //   }
+    // }
+
     stage('Build Docker Image') {
       steps {
-        sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
+        withCredentials([string(
+          credentialsId: 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY',
+          variable: 'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY'
+        )]) {
+          sh """
+            docker build \
+              --build-arg NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY \
+              -t $IMAGE_NAME:$IMAGE_TAG .
+          """
+        }
       }
     }
 
